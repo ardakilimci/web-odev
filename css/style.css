@@ -1,0 +1,373 @@
+/* --- GENEL AYARLAR --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+/* Arka Plan Görseli Ayarları */
+    background-image: url('../websitesiarkaplan.jpg');
+    background-size: cover;             /* Resmi ekranın tamamına yayar */
+    background-position: center center; /* Resmi yatayda ve dikeyde tam ortalar */
+    background-repeat: no-repeat;       /* Resmin yan yana tekrar etmesini engeller */
+    background-attachment: fixed;       /* Sayfayı aşağı kaydırsanız bile arka plan sabit kalır */
+    
+    background-color: #0b0c10; /* Görsel yüklenene kadar görünecek yedek renk */
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- ÜST MENÜ (NAVBAR) --- */
+header {
+    width: 100%;
+    padding: 30px 0; /* Menüyü yukarıdan ve aşağıdan biraz daha genişlettik */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Buzlu Cam (Glassmorphism) Efekti */
+    background: rgba(11, 12, 16, 0.6); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Menüyü sayfa kaysa bile en üstte sabit tutar */
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 65px; /* Linklerin arasını iyice açıp ekrana yaydık (önceki 40px idi) */
+}
+
+nav ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 18px; /* Yazıları biraz daha büyüttük */
+    font-weight: 600; /* Biraz daha kalın ve tok durmasını sağladık */
+    letter-spacing: 1.5px; /* Harflerin arasına çok hafif boşluk koyduk, elit durur */
+    position: relative; /* Alt çizgi animasyonu için gerekli */
+    padding-bottom: 6px; /* Yazı ile alt çizgi arasına nefes payı bıraktık */
+    transition: color 0.3s ease;
+}
+
+/* Şık Alt Çizgi Animasyonu (Başlangıçta gizli ve ortada) */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4e9af1; /* Mavi vurgu rengimiz */
+    transition: width 0.3s ease-in-out; /* Yumuşakça büyüme efekti */
+}
+
+/* Mouse ile üzerine gelince (Hover) */
+nav ul li a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(78, 154, 241, 0.5); /* Yazıda hafif, havalı bir parlama */
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* Alt çizgi ortadan başlayıp linkin sonuna kadar genişler */
+}
+
+/* --- ANA İÇERİK ALANI --- */
+main {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    margin-bottom: 40px;
+}
+
+/* --- HAKKIMDA SAYFASI STİLLERİ --- */
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.about-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4e9af1;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    font-size: 1.4rem;
+    color: #4e9af1;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.about-text p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.skill-card {
+    background: #16181e;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* --- PROJELERİM SAYFASI STİLLERİ (DİNAMİK BÜYÜME EFEKTİ) --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Büyüme animasyonu */
+}
+
+/* Hocanın istediği Dinamik Özellik: Üzerine gelince büyür */
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #4e9af1;
+}
+
+.project-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.project-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.project-card p {
+    font-size: 0.95rem;
+    color: #aaa;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.project-link {
+    color: #4e9af1;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* --- İLETİŞİM FORMU STİLLERİ --- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 30px auto 0 auto;
+    max-width: 500px;
+    text-align: left;
+}
+
+label {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid #333333;
+    background-color: #16181e;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #4e9af1;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #4e9af1;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #357abd;
+}
+/* --- HOBİLER SAYFASI STİLLERİ --- */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.hobby-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px);
+    border-color: #4e9af1;
+}
+
+.hobby-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.hobby-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.hobby-card p {
+    font-size: 0.95rem;
+    color: #aaa;
+}
+
+/* Dinamik Gizli Detay Alanı */
+.hobby-details {
+    display: none; /* Başlangıçta gizli */
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    color: #4e9af1 !important;
+}
+/* --- SAYFA GEÇİŞ ANİMASYONU --- */
+@keyframes sayfaGiris {
+    from {
+        opacity: 0; /* Tamamen görünmez başlar */
+        transform: translateY(30px); /* 30 piksel aşağıdan başlar */
+    }
+    to {
+        opacity: 1; /* Tamamen görünür olur */
+        transform: translateY(0); /* Kendi orijinal konumuna oturur */
+    }
+}
+
+/* Animasyonu sayfanın ana içeriğine (main) uygula */
+main {
+    animation: sayfaGiris 0.7s ease-out forwards;
+}
+/* --- ANA SAYFA ÖZEL TASARIMI --- */
+.home-title {
+    font-size: 3.8rem; /* Yazıyı çok daha büyük ve heybetli yapar */
+    font-weight: 700;
+    letter-spacing: 2px; /* Harflerin arasını hafif açar, çok şık durur */
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.home-subtitle {
+    font-size: 1.5rem; /* Alt başlığı da büyüttük */
+    color: #b0b0b0;
+    margin-bottom: 40px;
+}
+
+.academic-note {
+    font-size: 1rem;
+    color: #7a7a7a; /* Dikkat dağıtmayan, hafif silik şık bir gri */
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto; /* Tam ortalar */
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Üstüne ince bir çizgi çeker */
+    line-height: 1.6;
+}
+/* --- İLETİŞİM BİLGİLERİ KUTUSU --- */
+.contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0 auto 25px auto;
+    max-width: 500px;
+    text-align: left;
+}
+
+.contact-info p {
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
