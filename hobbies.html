@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobilerim</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Anasayfa</a></li>
+                <li><a href="./about.html">Hakkımda</a></li>
+                <li><a href="./projects.html">Projelerim</a></li>
+                <li><a href="./hobbies.html">Hobilerim</a></li>
+                <li><a href="./contact.html">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Hobilerim ve İlgi Alanlarım</h1>
+        <p class="subtitle">Detayları görmek için kartların üzerine tıklayabilirsiniz:</p>
+
+        <div class="hobbies-grid">
+            <!-- Hobi 1: Yazılım ve Kodlama -->
+<div class="hobby-card" onclick="toggleDetails('hobby1')">
+    <img src="c:\Users\PC\Desktop\kod3.jpg" alt="Yazılım">
+    <h3>💻 Yazılım ve Kodlama</h3>
+    <p>Algoritmalar kurmak ve yeni programlama dilleri öğrenmek en büyük tutkum.</p>
+    <div id="hobby1" class="hobby-details">
+        <p><strong>Detay:</strong> Bilgisayar Mühendisliği 1. sınıf öğrencisi olarak aktif şekilde kodlama pratikleri yapıyor, ufak çaplı projeler geliştirerek yazılım mantığını kavramaya odaklanıyorum.</p>
+    </div>
+</div>
+
+            <!-- Hobi 2: Futbol -->
+            <div class="hobby-card" onclick="toggleDetails('hobby2')">
+                <img src="c:\Users\PC\Desktop\futbol2.jpg" alt="Futbol">
+                <h3>⚽ Futbol Oynamak</h3>
+                <p>Boş zamanlarımda yeşil sahada olmak bana çok iyi geliyor.</p>
+                <div id="hobby2" class="hobby-details">
+                    <p><strong>Detay:</strong> Arkadaşlarımla düzenli olarak futbol oynamak hem takım ruhunu hissetmemi sağlıyor hem de fiziksel olarak aktif ve zinde kalmama yardımcı oluyor.</p>
+                </div>
+            </div>
+
+            <!-- Hobi 3: Müzik -->
+            <div class="hobby-card" onclick="toggleDetails('hobby3')">
+                <img src="c:\Users\PC\Desktop\müzik.jpg" alt="Müzik">
+                <h3>🎧 Müzik Dinlemek</h3>
+                <p>Farklı türlerde müzikler keşfetmek benim için bir tutku.</p>
+                <div id="hobby3" class="hobby-details">
+                    <p><strong>Detay:</strong> Özellikle bilgisayar başında kod yazarken veya ders çalışırken arka planda sevdiğim müziklerin çalması odaklanmamı ve motivasyonumu artırıyor.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Dinamik Özellik İçin JavaScript -->
+    <script>
+        function toggleDetails(id) {
+            const details = document.getElementById(id);
+            if (details.style.display === "block") {
+                details.style.display = "none";
+            } else {
+                details.style.display = "block";
+            }
+        }
+    </script>
+
+<footer style="text-align: center; padding: 20px; margin-top: auto; color: #555; font-size: 0.9rem;">
+        &copy; 2026 Arda Kilimci. Tüm hakları saklıdır. | Web Tasarımı Projesi
+    </footer>
+
+</body>
+</html>
