@@ -371,37 +371,54 @@ main {
     margin-bottom: 10px;
     font-size: 1rem;
 }
-/* --- MOBİL EKRANLAR İÇİN UYARLAMALAR (RESPONSIVE TASARIM) --- */
+* --- MOBİL EKRANLAR İÇİN UYARLAMALAR (RESPONSIVE TASARIM) --- */
 @media screen and (max-width: 768px) {
-    /* Menüyü yan yana değil, alt alta diz */
-    nav ul li {
-        float: none;
+    /* Menüyü sıkışmaktan kurtar ve tam genişlik ver */
+    nav {
+        width: 100%; 
+    }
+    
+    /* Menü elemanlarını alt alta, tam ekran diz */
+    nav ul {
+        display: flex;
+        flex-direction: column;
         width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    nav ul li {
+        width: 100%;
+        float: none;
+        border-bottom: 1px solid #444; /* Linkler arasına şık bir çizgi */
     }
     
     nav ul li a {
-        padding: 12px;
+        padding: 15px;
         display: block;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    /* İçerik genişliklerini telefona göre ayarla */
+    /* Sayfa içeriğinin telefonda taşmasını engelle */
     body {
-        padding: 5px;
+        padding: 0;
     }
 
     main, section, .glass-panel, .hobby-card, .project-card, .contact-info, form {
-        width: 95%;
-        margin: 10px auto;
+        width: 90%;
+        margin: 15px auto;
         padding: 15px;
         box-sizing: border-box;
     }
 
-    /* Başlık ve yazıları telefonda okunaklı boyuta getir */
-    h1 { font-size: 26px; }
-    h2 { font-size: 22px; }
+    /* Yazı boyutlarını telefona uygun küçült */
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
     p { font-size: 15px; }
 
-    /* İletişim formundaki kutuları telefon ekranına tam sığdır */
+    /* İletişim formu kutularını tam sığdır */
     input[type="text"], 
     input[type="email"], 
     textarea {
