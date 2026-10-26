@@ -371,3 +371,42 @@ main {
     margin-bottom: 10px;
     font-size: 1rem;
 }
+/* --- MOBİL EKRANLAR İÇİN UYARLAMALAR (RESPONSIVE TASARIM) --- */
+@media screen and (max-width: 768px) {
+    /* Menüyü yan yana değil, alt alta diz */
+    nav ul li {
+        float: none;
+        width: 100%;
+    }
+    
+    nav ul li a {
+        padding: 12px;
+        display: block;
+    }
+
+    /* İçerik genişliklerini telefona göre ayarla */
+    body {
+        padding: 5px;
+    }
+
+    main, section, .glass-panel, .hobby-card, .project-card, .contact-info, form {
+        width: 95%;
+        margin: 10px auto;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    /* Başlık ve yazıları telefonda okunaklı boyuta getir */
+    h1 { font-size: 26px; }
+    h2 { font-size: 22px; }
+    p { font-size: 15px; }
+
+    /* İletişim formundaki kutuları telefon ekranına tam sığdır */
+    input[type="text"], 
+    input[type="email"], 
+    textarea {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+    }
+}
