@@ -401,4 +401,8 @@ main {
         color: #ffffff !important;
         text-decoration: none !important;
     }
+    /* Menü ile içerik yazısı arasına mesafe koy */
+    main, .glass-panel {
+    margin-top: 25px !important;
+   }
 }
